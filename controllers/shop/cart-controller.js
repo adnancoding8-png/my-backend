@@ -49,13 +49,12 @@ const addToCart = async (req, res) => {
     await cart.save();
     await cart.populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,
@@ -100,7 +99,7 @@ const fetchCartItems = async (req, res) => {
 
     const cart = await Cart.findOne(query).populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     if (!cart) {
@@ -124,7 +123,6 @@ const fetchCartItems = async (req, res) => {
     const populateCartItems = validItems.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,
@@ -198,13 +196,12 @@ const updateCartItemQty = async (req, res) => {
     await cart.save();
     await cart.populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,
@@ -260,13 +257,12 @@ const deleteCartItem = async (req, res) => {
     await cart.save();
     await cart.populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,

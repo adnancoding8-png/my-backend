@@ -242,7 +242,6 @@ const createGuestOrder = async (req, res) => {
       price: product.price.toString(),
       quantity: 1,
       images: product.images || [],
-      image: product.image || ""
     }];
 
     // Create new guest order

@@ -49,13 +49,12 @@ const addToWishlist = async (req, res) => {
     await wishlist.save();
     await wishlist.populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     const populateWishlistItems = wishlist.items.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,
@@ -97,7 +96,7 @@ const fetchWishlistItems = async (req, res) => {
 
     const wishlist = await Wishlist.findOne(query).populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     if (!wishlist) {
@@ -122,7 +121,6 @@ const fetchWishlistItems = async (req, res) => {
     const populateWishlistItems = validItems.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,
@@ -178,13 +176,12 @@ const removeFromWishlist = async (req, res) => {
     await wishlist.save();
     await wishlist.populate({
       path: "items.productId",
-      select: "images image title price salePrice",
+      select: "images title price salePrice",
     });
 
     const populateWishlistItems = wishlist.items.map((item) => ({
       productId: item.productId._id,
       images: item.productId.images,
-      image: item.productId.image,
       title: item.productId.title,
       price: item.productId.price,
       salePrice: item.productId.salePrice,
